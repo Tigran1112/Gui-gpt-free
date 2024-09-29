@@ -1,7 +1,7 @@
 import sys
 import g4f
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QHBoxLayout, QProgressBar
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QFile, QTextStream
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget, QLabel, QHBoxLayout
+from PyQt5.QtCore import QThread, pyqtSignal, QFile, QTextStream
 
 class Worker(QThread):
     response_received = pyqtSignal(str)
@@ -83,7 +83,7 @@ class ChatApp(QMainWindow):
         prompt = self.input_area.toPlainText().strip()
         if prompt:
             self.history.append(prompt)
-            self.text_area.append(f"Вы: {prompt}")
+            self.text_area.append(f"\nВы: {prompt}")
             self.input_area.clear()
             self.loading_label.setText("Загрузка...")  # Показываем индикатор загрузки
 
@@ -94,7 +94,7 @@ class ChatApp(QMainWindow):
 
     def display_response(self, response):
         self.history.append(response)
-        self.text_area.append(f"Ответ: {response}")
+        self.text_area.append(f"\n Ответ:\n{response}")
         self.loading_label.setText("")  # Убираем индикатор загрузки
 
     def clear_chat(self):
